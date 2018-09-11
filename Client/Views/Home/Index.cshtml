@@ -20,7 +20,7 @@
 }
 
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <table class="table" style="max-width:300px;" id="books">
             @for (var i = 0; i < Model.Shelves.Count; i++)
             {
@@ -76,7 +76,7 @@
                 </tbody>      }
         </table>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-3">
         <h3>Show books with status:</h3>
         <input onclick="doFiltering()"  id="All"  type="radio" name="status" value="All"  checked="checked">All<br>
         <input onclick="doFiltering()" id="InShelf" type="radio" name="status" value="InShelf">Available<br>
@@ -89,7 +89,5 @@
         <p class="alert-info">All books for all shelves are shown here. Status (In Shelf/Loaned To) randomly changes approximately every 10 seconds. A logged in user can manually change the status. To view and update books and shelves, create an account, log in and select the respective menu options. 
             <br/><br/>
             If you press F12 and select "Console" you can see when the status changes for each book using Javascript in the browser.</p>
-    </div>
-    <div class="col-lg-2">
     </div>
 </div>
