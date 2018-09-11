@@ -34,10 +34,10 @@ function timerJob() {
             const selectedItem = Math.floor(Math.random() * books.length);
             let selectedBook = books[selectedItem];
             if (selectedBook.disabled === true) {
-                console.log(selectedBook.Title + " is blocked for uppdating of InShelf/NotInShelf!");
+                console.log(selectedBook.title + " is blocked for uppdating of InShelf/NotInShelf!");
                 return;
             }
-            selectedBook.InShelf = !selectedBook.InShelf;
+            selectedBook.inShelf = !selectedBook.inShelf;
             $.ajax({
                 url: localStorage.getItem("ApiUrl") + "api/book/" + selectedBook.id,
                 contentType: "application/json",
@@ -49,14 +49,14 @@ function timerJob() {
             const selector = `#${selectedBook.id} td:eq(2)`;
             const selector2 = `#${selectedBook.id + "_2"} td:eq(3)`;
             const selector3 = `#${selectedBook.id + "_3"}`;
-            if (selectedBook.InShelf === true) {
+            if (selectedBook.inShelf === true) {
                 $(selector).text("Available");
                 $(selector).removeClass("alert-danger");
                 $(selector2).text("Available");
                 $(selector2).removeClass("alert-danger");
                 $(selector3).text("Available");
                 $(selector3).removeClass("alert-danger");
-                console.log(selectedBook.Title + " is Available!");
+                console.log(selectedBook.title + " is Available!");
             }
             else {
                 $(selector).text("NotInShelf");
@@ -65,7 +65,7 @@ function timerJob() {
                 $(selector2).addClass("alert-danger");
                 $(selector3).text("NotInShelf");
                 $(selector3).addClass("alert-danger");
-                console.log(selectedBook.Title + " is Loaned To!");
+                console.log(selectedBook.title + " is Loaned To!");
             }
             if (document.getElementById("All") !== null) {
                 doFiltering();

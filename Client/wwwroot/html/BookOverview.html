@@ -38,8 +38,8 @@
 
             for (var i = 0; i < books.length; i++) {
                 let book = {
-                    Title: books[i].Title,
-                    InShelf: books[i].InShelf
+                    title: books[i].title,
+                    inShelf: books[i].inShelf
                 };
 
                 var row = table.insertRow(i + 1);
@@ -47,8 +47,8 @@
                 var cell1 = row.insertCell(1);
                 var cell2 = row.insertCell(2);
                 var cell3 = row.insertCell(3);
-                cell0.innerHTML = book.Title;
-                cell1.innerHTML = book.InShelf;
+                cell0.innerHTML = book.title;
+                cell1.innerHTML = book.inShelf;
                 cell2.innerHTML = 0;
                 cell3.innerHTML = 0;
             }
