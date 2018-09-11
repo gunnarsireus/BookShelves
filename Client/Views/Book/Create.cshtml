@@ -1,0 +1,48 @@
+@model Client.Models.Book
+
+@{
+    ViewData["Title"] = "Create new";
+}
+
+<h2>Create new book for Shelf @ViewBag.ShelfName</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" id="CreateForm" onmousedown="clearErrors()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ShelfId"/>
+            <div class="form-group">
+                <label asp-for="ISBN" class="control-label"></label>
+                <input asp-for="ISBN" class="form-control uppercase" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control uppercase" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="InShelf">
+                        <input asp-for="InShelf" />
+                        @Html.DisplayNameFor(m => m.InShelfNotInShelf)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <p>
+        <a asp-action="Index" asp-route-id="@Model.ShelfId">Back to list</a>
+    </p>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
