@@ -34,7 +34,7 @@ function timerJob() {
             const selectedItem = Math.floor(Math.random() * books.length);
             let selectedBook = books[selectedItem];
             if (selectedBook.disabled === true) {
-                console.log(selectedBook.Title + " is blocked for uppdating of InShelf/Offline!");
+                console.log(selectedBook.Title + " is blocked for uppdating of InShelf/NotInShelf!");
                 return;
             }
             selectedBook.InShelf = !selectedBook.InShelf;
@@ -50,22 +50,22 @@ function timerJob() {
             const selector2 = `#${selectedBook.id + "_2"} td:eq(3)`;
             const selector3 = `#${selectedBook.id + "_3"}`;
             if (selectedBook.InShelf === true) {
-                $(selector).text("InShelf");
+                $(selector).text("Available");
                 $(selector).removeClass("alert-danger");
-                $(selector2).text("InShelf");
+                $(selector2).text("Available");
                 $(selector2).removeClass("alert-danger");
-                $(selector3).text("InShelf");
+                $(selector3).text("Available");
                 $(selector3).removeClass("alert-danger");
-                console.log(selectedBook.Title + " is InShelf!");
+                console.log(selectedBook.Title + " is Available!");
             }
             else {
-                $(selector).text("Offline");
+                $(selector).text("NotInShelf");
                 $(selector).addClass("alert-danger");
-                $(selector2).text("Offline");
+                $(selector2).text("NotInShelf");
                 $(selector2).addClass("alert-danger");
-                $(selector3).text("Offline");
+                $(selector3).text("NotInShelf");
                 $(selector3).addClass("alert-danger");
-                console.log(selectedBook.Title + " is Offline!");
+                console.log(selectedBook.Title + " is Loaned To!");
             }
             if (document.getElementById("All") !== null) {
                 doFiltering();
@@ -95,11 +95,11 @@ function doFiltering() {
         if (td !== undefined) {
             td = td.trim();
         }
-        if (td === "Offline" && selection === 1) {
+        if (td === "NotInShelf" && selection === 1) {
             $(this).addClass("hidden");  //Show only InShelf
         }
         if (td === "InShelf" && selection === 2) {
-            $(this).addClass("hidden"); //Show only Offline
+            $(this).addClass("hidden"); //Show only NotInShelf
         }
     });
 };

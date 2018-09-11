@@ -37,7 +37,7 @@ namespace Client.Controllers
 			};
 			selectList.AddRange(shelves.Select(shelf => new SelectListItem
 			{
-				Text = shelf.Name,
+				Text = shelf.Genre,
 				Value = shelf.Id.ToString(),
 				Selected = shelf.Id.ToString() == id
 			}));
@@ -65,7 +65,7 @@ namespace Client.Controllers
 		{
 			var book = await Utils.Get<Book>("api/book/" + id);
 			var Shelf = await Utils.Get<Shelf>("api/Shelf/" + book.ShelfId);
-			ViewBag.ShelfName = Shelf.Name;
+			ViewBag.ShelfName = Shelf.Genre;
 			return View(book);
 		}
 
@@ -78,7 +78,7 @@ namespace Client.Controllers
 				ShelfId = ShelfId,
 			};
 			var Shelf = await Utils.Get<Shelf>("api/Shelf/" + ShelfId);
-			ViewBag.ShelfName = Shelf.Name;
+			ViewBag.ShelfName = Shelf.Genre;
 			return View(book);
 		}
 
@@ -104,7 +104,7 @@ namespace Client.Controllers
 			book.Disabled = true; //Prevent updates of InShelf/Offline while editing
 			await Utils.Put<Book>("api/book/" + id, book);
 			var Shelf = await Utils.Get<Shelf>("api/Shelf/" + book.ShelfId);
-			ViewBag.ShelfName = Shelf.Name;
+			ViewBag.ShelfName = Shelf.Genre;
 			return View(book);
 		}
 

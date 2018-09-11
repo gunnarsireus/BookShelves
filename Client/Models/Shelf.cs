@@ -16,10 +16,10 @@ namespace Client.Models
 		[Display(Name = "Created date")]
 		public string CreationTime { get; set; }
 		[Display(Name = "Name")]
-		public string Name { get; set; }
+		public string Genre { get; set; }
 
 		[Display(Name = "Address")]
-		public string Address { get; set; }
+		public string Location { get; set; }
 
 		public ICollection<Book> Books { get; set; }
 	}

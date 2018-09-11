@@ -16,10 +16,10 @@
             <tr>
                 <th></th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Shelves[0].Name)
+                    @Html.DisplayNameFor(model => model.Shelves[0].Genre)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Shelves[0].Address)
+                    @Html.DisplayNameFor(model => model.Shelves[0].Location)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Shelves[0].CreationTime)
@@ -35,10 +35,10 @@
                         @Html.HiddenFor(modelItem => item.Id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.Genre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Address)
+                        @Html.DisplayFor(modelItem => item.Location)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreationTime)

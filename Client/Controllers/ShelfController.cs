@@ -83,8 +83,8 @@ namespace Client.Controllers
 			if (!ModelState.IsValid) return View(shelf);
 			var oldShelf = await Utils.Get<Shelf>("api/Shelf/" + id);
 
-			oldShelf.Name = shelf.Name;
-			oldShelf.Address = shelf.Address;
+			oldShelf.Genre = shelf.Genre;
+			oldShelf.Location = shelf.Location;
 			await Utils.Put<Shelf>("api/Shelf/" + oldShelf.Id, oldShelf);
 
 			return RedirectToAction(nameof(Index));
