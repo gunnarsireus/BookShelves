@@ -1,7 +1,7 @@
 @using System.Security.Principal
 @model Client.Models.BookViewModel.BookViewModel
 @{
-    ViewData["Title"] = "Shelf books";
+    ViewData["Title"] = "Books in genre";
 }
 <h2>Shelf books</h2>
 
@@ -22,7 +22,7 @@
             </tr>
         </table>
         <p>
-            <a asp-action="Create" asp-route-id="@ViewBag.ShelfId">Create new vehicle</a>
+            <a asp-action="Create" asp-route-id="@ViewBag.ShelfId">Create new book</a>
         </p>
     }
     else
@@ -70,17 +70,34 @@
                             @Html.DisplayFor(modelItem => item.InShelfNotInShelf)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Loan</a> |
+                            @if (item.InShelf)
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Loan</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="disablePointer">Loan</a>
+                            } |
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            @if (item.LoanedTo == User.Identity.Name)
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id">Return</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="disablePointer">Return</a>
+                            }
+
                         </td>
-                    </tr>  }
+                    </tr>}
             </tbody>
         </table>
     </div>
     <div class="col-lg-4">
-        <p class="alert-info">All books for a particular Shelf are shown here. In the drop-down menu, you can choose another Shelf and see its books. Note how the status changes randomly every 10 seconds.
-            <br/><br/>
-            If you press F12 and select "Console" you can see when the status changes for each book using Javascript in the browser<br /><br />If you press F12 and select "Console" you can see when the status changes for each book using Javascript in the browser.</p>
+        <p class="alert-info">
+            All books for a particular Shelf are shown here. In the drop-down menu, you can choose another Shelf and see its books. Note how the status changes randomly every 10 seconds.
+            <br /><br />
+            If you press F12 and select "Console" you can see when the status changes for each book using Javascript in the browser<br /><br />If you press F12 and select "Console" you can see when the status changes for each book using Javascript in the browser.
+        </p>
     </div>
 </div>

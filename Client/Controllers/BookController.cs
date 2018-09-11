@@ -113,12 +113,14 @@ namespace Client.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(Guid id, [Bind("Id, InShelf")] Book book)
+		public async Task<IActionResult> Edit(Guid id, [Bind("Id, InShelf, LoanThisBook")] Book book)
 		{
 			if (!ModelState.IsValid) return View(book);
+            if (!book.LoanThisBook) return View(book);
 			var oldbook = await Utils.Get<Book>("api/book/" + book.Id);
 			oldbook.InShelf = book.InShelf;
-			oldbook.Disabled = false; //Enable updates of InShelf/Offline when editing done
+            oldbook.LoanedTo = User.Identity.Name;
+            oldbook.Disabled = false; //Enable updates of InShelf/Offline when editing done
 			await Utils.Put<Book>("api/book/" + oldbook.Id, oldbook);
 
 			return RedirectToAction("Index", new { id = oldbook.ShelfId });
@@ -138,8 +140,11 @@ namespace Client.Controllers
 		public async Task<IActionResult> DeleteConfirmed(Guid id)
 		{
 			var book = await Utils.Get<Book>("api/book/" + id);
-			await Utils.Delete<Book>("api/book/" + id);
-			return RedirectToAction("Index", new { id = book.ShelfId });
+            book.Disabled = false;
+            book.InShelf = true;
+            book.LoanedTo = "";
+            await Utils.Put<Book>("api/book/" + book.Id, book);
+            return RedirectToAction("Index", new { id = book.ShelfId });
 		}
 
 		public async Task<bool> ISBNAvailable(string isbn)

@@ -41,10 +41,10 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li>
-                            <a asp-area="" asp-controller="Shelf" asp-action="Index">shelves</a>
+                            <a asp-area="" asp-controller="Shelf" asp-action="Index">All Shelves</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="book" asp-action="Index">Shelf books</a>
+                            <a asp-area="" asp-controller="book" asp-action="Index">Books in Shelf</a>
                         </li>
                     }
                 </ul>

@@ -32,6 +32,18 @@ namespace Client.Models
         [Display(Name = "In Shelf or Loaned?")]
         public string InShelfNotInShelf => InShelf ? "Available" : "Loaned To: " + LoanedTo;
 
+        private bool loanThisBook;
+        [Display(Name = "Do you want to loan this book? Click select box!")]
+        public bool LoanThisBook
+        {
+            get { return !InShelf; }
+            set
+            {
+                InShelf = !value;
+                loanThisBook = value;
+            }
+        }
+
         public bool Disabled { get; set; } //Used to block changes of InShelf/Offline status
     }
 }

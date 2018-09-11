@@ -1,25 +1,31 @@
 @model Client.Models.Book
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Book Details";
 }
 
-<h2>Details for vehicle belonging to @ViewBag.ShelfName</h2>
+<h2>Details for book in genre @ViewBag.ShelfName</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ISBN)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CreationTime)
@@ -39,7 +45,22 @@
 <div>
     @{var listString = "Index/" + Model.ShelfId; }
     <p>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        @if (Model.InShelf)
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">Loan</a>
+        }
+        else
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="disablePointer">Loan</a>
+        } |
+        @if (Model.LoanedTo == User.Identity.Name)
+        {
+            <a asp-action="Delete" asp-route-id="@Model.Id">Return</a>
+        }
+        else
+        {
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="disablePointer">Return</a>
+        } |
         <a asp-action="@listString">Back to list</a>
     </p>
 </div>
