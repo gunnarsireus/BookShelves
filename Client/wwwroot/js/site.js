@@ -34,10 +34,16 @@ function timerJob() {
             const selectedItem = Math.floor(Math.random() * books.length);
             let selectedBook = books[selectedItem];
             if (selectedBook.disabled === true) {
-                console.log(selectedBook.title + " is blocked for uppdating of InShelf/NotInShelf!");
+                console.log(selectedBook.title + " is blocked for loan!");
                 return;
             }
             selectedBook.inShelf = !selectedBook.inShelf;
+            if (selectedBook.inShelf === false) {
+                selectedBook.loanedTo = "Peter";
+            }
+            else {
+                selectedBook.loanedTo = "";
+            }
             $.ajax({
                 url: localStorage.getItem("ApiUrl") + "api/book/" + selectedBook.id,
                 contentType: "application/json",
@@ -46,8 +52,8 @@ function timerJob() {
                 dataType: "json"
             });
 
-            const selector = `#${selectedBook.id} td:eq(2)`;
-            const selector2 = `#${selectedBook.id + "_2"} td:eq(3)`;
+            const selector = `#${selectedBook.id} td:eq(3)`;
+            const selector2 = `#${selectedBook.id + "_2"} td:eq(4)`;
             const selector3 = `#${selectedBook.id + "_3"}`;
             if (selectedBook.inShelf === true) {
                 $(selector).text("Available");
@@ -59,13 +65,13 @@ function timerJob() {
                 console.log(selectedBook.title + " is Available!");
             }
             else {
-                $(selector).text("NotInShelf");
+                $(selector).text("Loaned to: " + selectedBook.loanedTo);
                 $(selector).addClass("alert-danger");
-                $(selector2).text("NotInShelf");
+                $(selector2).text("Loaned to: " + selectedBook.loanedTo);
                 $(selector2).addClass("alert-danger");
-                $(selector3).text("NotInShelf");
+                $(selector3).text("Loaned to: " + selectedBook.loanedTo);
                 $(selector3).addClass("alert-danger");
-                console.log(selectedBook.title + " is Loaned To!");
+                console.log(selectedBook.title + " is loaned to " + selectedBook.loanedTo + "!");
             }
             if (document.getElementById("All") !== null) {
                 doFiltering();
@@ -91,14 +97,14 @@ function doFiltering() {
     var table = $('#books > tbody');
     $('tr', table).each(function () {
         $(this).removeClass("hidden");
-        let td = $('td:eq(2)', $(this)).html();
+        let td = $('td:eq(3)', $(this)).html();
         if (td !== undefined) {
             td = td.trim();
         }
-        if (td === "NotInShelf" && selection === 1) {
+        if (td !== "Available" && selection === 1) {
             $(this).addClass("hidden");  //Show only InShelf
         }
-        if (td === "InShelf" && selection === 2) {
+        if (td === "Available" && selection === 2) {
             $(this).addClass("hidden"); //Show only NotInShelf
         }
     });

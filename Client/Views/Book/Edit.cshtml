@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit bil f&#246;r @ViewBag.ShelfName</h2>
+<h2>Loan book in genre @ViewBag.ShelfName</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -13,22 +13,23 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ShelfId" />
             <div class="form-group">
-                <label asp-for="CreationTime" class="control-label"></label>
-                <input asp-for="CreationTime" class="form-control" disabled="disabled" />
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" disabled="disabled" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" disabled="disabled" />
             </div>
             <div class="form-group">
                 <label asp-for="ISBN" class="control-label"></label>
-                <input asp-for="ISBN" class="form-control" disabled="disabled"/>
+                <input asp-for="ISBN" class="form-control" disabled="disabled" />
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control"  disabled="disabled"/>
-            </div>
+
             <div class="form-group">
                 <div class="checkbox">
                     <label asp-for="InShelf">
                         <input asp-for="InShelf" />
-                        @Html.DisplayNameFor(m => m.InShelfNotInShelf)
+                        @Html.DisplayFor(m => m.InShelfNotInShelf)
                     </label>
                 </div>
             </div>

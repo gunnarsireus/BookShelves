@@ -27,7 +27,7 @@
                 var books = Model.Shelves[i].Books.ToList();
                 <thead>
                     <tr>
-                        <th colspan="3">
+                        <th colspan="4">
                             @Html.DisplayFor(model => model.Shelves[i].Genre) <br />
                             @Html.DisplayFor(model => model.Shelves[i].Location)
                         </th>
@@ -39,32 +39,38 @@
                     {
                         if (j == 0)
                         {
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => books[j].ISBN)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => books[j].Title)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => books[j].InShelf)
-                                </th>
-                            </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => books[j].Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => books[j].Author)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => books[j].ISBN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => books[j].InShelf)
+                        </th>
+                    </tr>
 }
-                        <tr id="@books[j].Id">
-                            <td>
-                                @Html.DisplayFor(model => books[j].ISBN)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => books[j].Title)
-                            </td>
-                            @{ var cl = books[j].InShelf ? "" : "alert-danger";}
-                            <td class="@cl">
-                                @Html.DisplayFor(model => books[j].InShelfNotInShelf)
-                            </td>
-                        </tr> if (j == books.Count - 1)
+                    <tr id="@books[j].Id">
+                        <td>
+                            @Html.DisplayFor(model => books[j].Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => books[j].Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => books[j].ISBN)
+                        </td>
+                        @{ var cl = books[j].InShelf ? "" : "alert-danger";}
+                        <td class="@cl">
+                            @Html.DisplayFor(model => books[j].InShelfNotInShelf)
+                        </td>
+                    </tr> if (j == books.Count - 1)
                                 {
-                                    <tr><td colspan="3"></td></tr>}
+                                    <tr><td colspan="4"></td></tr>}
                                 }
 
                 </tbody>      }
@@ -74,10 +80,10 @@
         <h3>Show books with status:</h3>
         <input onclick="doFiltering()"  id="All"  type="radio" name="status" value="All"  checked="checked">All<br>
         <input onclick="doFiltering()" id="InShelf" type="radio" name="status" value="InShelf">Available<br>
-        <input onclick="doFiltering()" id="NotInShelf" type="radio" name="status" value="NotInShelf">Not In Shelf<br>
+        <input onclick="doFiltering()" id="NotInShelf" type="radio" name="status" value="NotInShelf">Loaned to: <br>
         <br>
         <br>
-        <button onclick="showModals()">Show message queues</button>
+        <button onclick="showModals()">Show all books</button>
     </div>
     <div class="col-lg-4">
         <p class="alert-info">All books for all shelves are shown here. Status (In Shelf/Loaned To) randomly changes approximately every 10 seconds. A logged in user can manually change the status. To view and update books and shelves, create an account, log in and select the respective menu options. 

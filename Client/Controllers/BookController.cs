@@ -46,8 +46,8 @@ namespace Client.Controllers
 			if (id != null)
 			{
 				books = await Utils.Get<List<Book>>("api/book");
-				var bookId = new Guid(id);
-				books = books.Where(o => o.ShelfId == bookId).ToList();
+				var shelfId = new Guid(id);
+				books = books.Where(o => o.ShelfId == shelfId).ToList();
 			}
 
 			var bookListViewModel = new BookViewModel()

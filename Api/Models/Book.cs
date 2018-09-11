@@ -20,7 +20,8 @@ namespace Api.Models
 		public string Title { get; set; }
         public string Author { get; set; }
         public string ISBN { get; set; }
-		public bool InShelf { get; set; }
+        public string LoanedTo { get; set; }
+        public bool InShelf { get; set; }
 		public bool Disabled { get; set; } //Used to block changes of InShelf status
 	}
 }
