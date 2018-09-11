@@ -8,7 +8,7 @@ namespace Api.Services
     public class Bookshelf : IBookshelf
     {
         private readonly BookUnitOfWork _unitOfWork;
-        public Bookshelf(IApiContext context)
+        public Bookshelf(ApiContext context)
         {
             _unitOfWork = new BookUnitOfWork(context);
         }
