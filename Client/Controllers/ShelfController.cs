@@ -57,7 +57,7 @@ namespace Client.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Name,Address,CreationTime")] Shelf shelf)
+		public async Task<IActionResult> Create([Bind("Genre, Location, CreationTime")] Shelf shelf)
 		{
 			if (!ModelState.IsValid) return View(shelf);
 			shelf.Id = Guid.NewGuid();
@@ -78,7 +78,7 @@ namespace Client.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(Guid id, [Bind("Id,CreationTime, Name, Address")] Shelf shelf)
+		public async Task<IActionResult> Edit(Guid id, [Bind("Id, CreationTime, Genre, Location")] Shelf shelf)
 		{
 			if (!ModelState.IsValid) return View(shelf);
 			var oldShelf = await Utils.Get<Shelf>("api/Shelf/" + id);

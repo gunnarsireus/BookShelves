@@ -14,28 +14,20 @@
             <input type="hidden" asp-for="ShelfId" />
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control uppercase" />
+                <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control uppercase" />
+                <input asp-for="Author" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ISBN" class="control-label"></label>
-                <input asp-for="ISBN" class="form-control uppercase" />
+                <input asp-for="ISBN" class="form-control" />
                 <span asp-validation-for="ISBN" class="text-danger"></span>
             </div>
-
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="InShelf">
-                        <input asp-for="InShelf" />
-                        @Html.DisplayNameFor(m => m.InShelfNotInShelf)
-                    </label>
-                </div>
-            </div>
+            <input type="hidden" asp-for="InShelf" value="true"/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

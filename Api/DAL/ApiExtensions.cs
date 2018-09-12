@@ -101,8 +101,6 @@ namespace Api.DAL
                 foreach (var book in context.Books)
                 {
                     book.Disabled = false;
-                    book.InShelf = true;
-                    book.LoanedTo = "";
                 }
             }
             context.SaveChanges();

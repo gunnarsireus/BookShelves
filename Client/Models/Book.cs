@@ -23,7 +23,8 @@ namespace Client.Models
         public string Author { get; set; }
         public string LoanedTo { get; set; }
 
-        [Remote("ISBNAvailable", "book", ErrorMessage = "ISBN number taken or wrong format")]
+        [Remote("ISBNAvailable", "book", ErrorMessage = "ISBN number taken")]
+        [RegularExpression(@"^\d{3}-\d{10}$", ErrorMessage = "{0} denoted as 798-1234567890")]
         public string ISBN { get; set; }
 
         [Display(Name = "InShelf")]

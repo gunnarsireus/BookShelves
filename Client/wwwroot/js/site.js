@@ -1,5 +1,20 @@
 ﻿// Write your JavaScript code.
 $(document).ready(function () {
+    names.push("Peter");
+    names.push("Margarete");
+    names.push("Suzanne");
+    names.push("Anna");
+    names.push("Linda");
+    names.push("Paul");
+    names.push("John");
+    names.push("George");
+    names.push("Martin");
+    names.push("Keith");
+    names.push("Jack");
+    names.push("Elsa");
+    names.push("Theresa");
+    names.push("Elisabeth");
+    localStorage.clear();
     if (document.getElementById("ApiUrl") !== null) {
         if (localStorage.getItem("ApiUrl") === null || localStorage.getItem("ApiUrl" !== document.getElementById("ApiUrl").innerHTML)) {
             localStorage.setItem("ApiUrl", document.getElementById("ApiUrl").innerHTML);
@@ -8,7 +23,7 @@ $(document).ready(function () {
     }
     console.log('documentReady');
 });
-
+let names=[];
 $(".uppercase").keyup(function () {
     var text = $(this).val();
     $(this).val(text.toUpperCase());
@@ -39,7 +54,8 @@ function timerJob() {
             }
             selectedBook.inShelf = !selectedBook.inShelf;
             if (selectedBook.inShelf === false) {
-                selectedBook.loanedTo = "Peter";
+                const selectedName = Math.floor(Math.random() * names.length);
+                selectedBook.loanedTo = names[selectedName];
             }
             else {
                 selectedBook.loanedTo = "";
