@@ -116,8 +116,8 @@ namespace Client.Controllers
         public async Task<IActionResult> Edit(Guid id, [Bind("Id, InShelf, LoanThisBook")] Book book)
         {
             if (!ModelState.IsValid) return View(book);
-            if (!book.LoanThisBook) return View(book);
             var oldbook = await Utils.Get<Book>("api/book/" + book.Id);
+            if (!book.LoanThisBook) return RedirectToAction("Index", new { id = oldbook.ShelfId });
             oldbook.InShelf = book.InShelf;
             oldbook.LoanedTo = User.Identity.Name;
             oldbook.Disabled = false; //Enable updates of InShelf/Offline when editing done
